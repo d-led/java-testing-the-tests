@@ -1,0 +1,41 @@
+image: gradle:8-jdk11
+
+variables:
+  GRADLE_EXTRA_OPTS: "-Dhttp.proxyHost=$CODE_PROXY_HOST -Dhttp.proxyPort=$CODE_PROXY_PORT -Dhttps.proxyHost=$CODE_PROXY_HOST -Dhttps.proxyPort=$CODE_PROXY_PORT"
+  GRADLE: "gradle" # use ./gradlew on a non-gradle image
+  https_proxy: $CODE_PROXY
+  http_proxy: $CODE_PROXY
+  no_proxy: $CODE_NO_PROXY
+
+before_script:
+  - chmod +x gradlew
+  - export GRADLE_USER_HOME=`pwd`/.gradle
+  - $GRADLE $GRADLE_EXTRA_OPTS --version
+
+cache:
+  paths:
+     - .gradle/wrapper
+     - .gradle/caches
+
+test:
+  stage: build
+  script:
+    - $GRADLE $GRADLE_EXTRA_OPTS test --info
+  allow_failure: true
+  artifacts:
+    expire_in: 30 mins
+    when: always
+    reports:
+      junit: app/build/test-results/test/**/TEST-*.xml
+
+pitest:
+  stage: build
+  script:
+    - $GRADLE $GRADLE_EXTRA_OPTS pitest
+  artifacts:
+    expire_in: 30 mins
+    when: always
+    reports:
+      junit: app/build/test-results/test/**/TEST-*.xml
+    paths:
+      - app/build/reports/pitest
