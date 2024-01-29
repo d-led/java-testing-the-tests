@@ -17,7 +17,7 @@ permissions:
   contents: read
 
 jobs:
-  mutation-testing:
+  property-based-testing:
     strategy:
       fail-fast: false
 
@@ -34,8 +34,14 @@ jobs:
       uses: gradle/gradle-build-action@bd5760595778326ba7f1441bcf7e88b49de61a25 # v2.6.0
       with:
         arguments: test --info
+    - name: Test Report
+      uses: dorny/test-reporter@v1.8.0
+      if: success() || failure()    # run this step even if previous step failed
+      with:
+        name: Property-Based Tests
+        path: app/build/test-results/test/**/TEST-*.xml
 
-  property-based-testing:
+  mutation-testing:
     strategy:
       fail-fast: false
 
