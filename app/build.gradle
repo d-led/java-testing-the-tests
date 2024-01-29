@@ -45,13 +45,14 @@ pitest {
     targetClasses = ['com.siemens.*']
     mutators = [
         "STRONGER",
-        "AOR" // https://pitest.org/quickstart/mutators/#EXPERIMENTAL_AOR
+        // "AOR" // https://pitest.org/quickstart/mutators/#EXPERIMENTAL_AOR
+        // no replacement yet: https://github.com/hcoles/pitest/issues/1119#issuecomment-1326888433
     ]
-    pitestVersion = "1.7.4"
+    pitestVersion = "1.15.6"
     outputFormats = ['HTML', 'XML']
     timestampedReports = false
     verbose = true
-    junit5PluginVersion = '0.15' // https://mvnrepository.com/artifact/org.pitest/pitest-junit5-plugin
+    junit5PluginVersion = '1.2.1' // https://mvnrepository.com/artifact/org.pitest/pitest-junit5-plugin
     excludedTestClasses = [ // for demonstration purposes
         'com.siemens.**.*Properties'
     ]
