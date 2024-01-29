@@ -15,7 +15,7 @@ repositories {
 }
 
 ext {
-    jqwikVersion = '1.7.3'
+    jqwikVersion = '1.7.4'
     junitVersion = '5.9.3'
     assertjVersion = '3.24.2'
 }
