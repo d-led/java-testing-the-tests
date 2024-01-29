@@ -40,7 +40,7 @@ jobs:
       with:
         name: Property-Based Tests
         path: app/build/test-results/test/**/TEST-*.xml
-        reporter: junit
+        reporter: java-junit
 
   mutation-testing:
     strategy:
