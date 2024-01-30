@@ -29,6 +29,7 @@ dependencies {
     testImplementation "org.junit.jupiter:junit-jupiter:${junitVersion}"
     testImplementation "org.assertj:assertj-core:${assertjVersion}"
     testImplementation "net.jqwik:jqwik:${jqwikVersion}"
+    pitest 'org.pitest:pitest-rv-plugin:0.1'
 }
 
 application {
@@ -45,8 +46,7 @@ pitest {
     targetClasses = ['com.siemens.*']
     mutators = [
         "STRONGER",
-        // "AOR" // https://pitest.org/quickstart/mutators/#EXPERIMENTAL_AOR
-        // no replacement yet: https://github.com/hcoles/pitest/issues/1119#issuecomment-1326888433
+        "AOR" // https://pitest.org/quickstart/mutators/#EXPERIMENTAL_AOR
     ]
     pitestVersion = "1.15.6"
     outputFormats = ['HTML', 'XML']
