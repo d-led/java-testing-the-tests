@@ -15,10 +15,11 @@ class MathsTest {
         assertThat(maths.sumOf(2, 2))
             .isEqualTo(4)
             // .isGreaterThanOrEqualTo(0)
-        ;
+            ;
 
-        assertThat(maths.sumOf(2, 4))
-            .isEqualTo(6)
-        ;
+        // uncomment this assertion to pass the mutation test
+        // assertThat(maths.sumOf(2, 4))
+        //     .isEqualTo(6)
+        // ;
     }
 }
