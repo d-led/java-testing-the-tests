@@ -15,9 +15,6 @@ on:
 
 jobs:
   property-based-testing:
-    strategy:
-      fail-fast: false
-
     runs-on: ubuntu-latest
 
     steps:
@@ -40,9 +37,6 @@ jobs:
         reporter: java-junit
 
   mutation-testing:
-    strategy:
-      fail-fast: false
-
     runs-on: ubuntu-latest
 
     steps:
