@@ -3,10 +3,14 @@
  * SPDX-License-Identifier: Unlicense
  */
 
+import org.gradle.api.tasks.testing.TestDescriptor
+import org.gradle.api.tasks.testing.TestListener
+import org.gradle.api.tasks.testing.TestResult
+
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     id 'application'
-    id 'info.solidsoft.pitest' version '1.15.0'
+    id 'info.solidsoft.pitest' version '1.19.0'
 }
 
 repositories {
@@ -15,9 +19,9 @@ repositories {
 }
 
 ext {
-    jqwikVersion = '1.7.4'
-    junitVersion = '5.9.3'
-    assertjVersion = '3.24.2'
+    jqwikVersion = '1.9.3'
+    junitVersion = '6.0.3'
+    assertjVersion = '3.27.7'
 }
 
 compileTestJava {
@@ -48,11 +52,11 @@ pitest {
         "STRONGER",
         "AOR" // https://pitest.org/quickstart/mutators/#EXPERIMENTAL_AOR
     ]
-    pitestVersion = "1.15.6"
+    pitestVersion = "1.23.1"
     outputFormats = ['HTML', 'XML']
     timestampedReports = false
     verbose = true
-    junit5PluginVersion = '1.2.1' // https://mvnrepository.com/artifact/org.pitest/pitest-junit5-plugin
+    junit5PluginVersion = '1.2.3' // https://mvnrepository.com/artifact/org.pitest/pitest-junit5-plugin
     excludedTestClasses = [ // for demonstration purposes
         'com.siemens.**.*Properties'
     ]
@@ -70,15 +74,30 @@ test {
 	// include '**/*Tests.class'
 }
 
-tasks.withType(Test) {
+tasks.withType(Test).configureEach {
     testLogging {
-        exceptionFormat "full"
+        exceptionFormat = "full"
         events 'standard_out' //, 'standard_error'
         // showStandardStreams = true // enable to show full, but noisier output
     }
 
-    afterTest { descr, result ->
-        def elapsed = result.endTime - result.startTime
-        println ("$descr took $elapsed ms.")
-    }
+    addTestListener(new TestListener() {
+        @Override
+        void beforeSuite(TestDescriptor suite) {
+        }
+
+        @Override
+        void afterSuite(TestDescriptor suite, TestResult result) {
+        }
+
+        @Override
+        void beforeTest(TestDescriptor testDescriptor) {
+        }
+
+        @Override
+        void afterTest(TestDescriptor testDescriptor, TestResult result) {
+            def elapsed = result.endTime - result.startTime
+            println("$testDescriptor took $elapsed ms.")
+        }
+    })
 }

@@ -1,0 +1,99 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "gradle build warning mode",
+			"type": "shell",
+			"command": "./gradlew",
+			"args": [
+				"build",
+				"--warning-mode",
+				"all"
+			],
+			"isBackground": false,
+			"problemMatcher": [
+				"$gradle"
+			],
+			"group": "build"
+		},
+		{
+			"label": "gradle assemble warning mode",
+			"type": "shell",
+			"command": "./gradlew",
+			"args": [
+				"assemble",
+				"--warning-mode",
+				"all"
+			],
+			"isBackground": false,
+			"problemMatcher": [
+				"$gradle"
+			],
+			"group": "build"
+		},
+		{
+			"label": "gradle build warning mode 2",
+			"type": "shell",
+			"command": "./gradlew",
+			"args": [
+				"build",
+				"--warning-mode",
+				"all"
+			],
+			"isBackground": false,
+			"problemMatcher": [
+				"$gradle"
+			],
+			"group": "build"
+		},
+		{
+			"label": "gradle clean build rerun warning mode",
+			"type": "shell",
+			"command": "./gradlew",
+			"args": [
+				"clean",
+				"build",
+				"--warning-mode",
+				"all",
+				"--rerun-tasks"
+			],
+			"isBackground": false,
+			"problemMatcher": [
+				"$gradle"
+			],
+			"group": "build"
+		},
+		{
+			"label": "gradle assemble warning mode verify",
+			"type": "shell",
+			"command": "./gradlew",
+			"args": [
+				"assemble",
+				"--warning-mode",
+				"all",
+				"--rerun-tasks"
+			],
+			"isBackground": false,
+			"problemMatcher": [
+				"$gradle"
+			],
+			"group": "build"
+		},
+		{
+			"label": "gradle build warning mode final",
+			"type": "shell",
+			"command": "./gradlew",
+			"args": [
+				"build",
+				"--warning-mode",
+				"all",
+				"--rerun-tasks"
+			],
+			"isBackground": false,
+			"problemMatcher": [
+				"$gradle"
+			],
+			"group": "build"
+		}
+	]
+}
